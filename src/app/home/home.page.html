@@ -1,14 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="parent-title">
+  <h1>Spica App</h1>
+</div>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<div class="parent-form">
+
+  <div class="child-form">
+    <div class="container-form">
+      <form (ngSubmit)="onSubmit()">
+        <ion-row class="mb-3">
+          <ion-item>
+            <ion-input type="email" placeholder="Introduce tu email..." [(ngModel)]="formulario.email" name="email">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item>
+            <ion-input type="password" placeholder="Introduce tu contraseña..." [(ngModel)]="formulario.password"
+              name="password"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-button type="submit" color="danger" expand="full" shape="round">Iniciar sesión</ion-button>
+        </ion-row>
+      </form>
+    </div>
   </div>
-</ion-content>
+
+</div>

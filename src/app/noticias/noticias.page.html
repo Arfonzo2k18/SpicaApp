@@ -1,0 +1,18 @@
+<ion-toolbar>
+  <ion-title style="text-align: center; margin: auto;">Noticias</ion-title>
+  <ion-button color="danger" slot="end" (click)="presentPopover()" style="margin-right: 3%;">
+    Categorias
+  </ion-button>
+</ion-toolbar>
+<ion-content>
+  <ion-card *ngFor="let noticia of noticias; let i = index">
+    <img src="{{global.URL_IMG_NOTICIAS}}{{noticia.id}}/{{noticia.image}}" height="270px">
+    <ion-card-header>
+      <ion-card-subtitle>Autor: {{noticia.Usuario.nombre}}</ion-card-subtitle>
+      <ion-card-title>{{noticia.titular}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content text-wrap [innerHTML]="this._sanitizer.bypassSecurityTrustHtml(noticia.contenido)">
+    </ion-card-content>
+  </ion-card>
+</ion-content>
