@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PopoverController, ToastController } from '@ionic/angular';
 import { PopoverComponent } from '../components/popover/popover.component';
 import { RestproviderService } from '../providers/restprovider.service';
@@ -14,6 +14,7 @@ export class NoticiasPage implements OnInit {
 
   noticias: any[];
   _sanitizer: DomSanitizer;
+  popover: any;
 
   constructor(public sanitizer: DomSanitizer, public global: Global, public popoverController: PopoverController, public toastController: ToastController, public restprovider: RestproviderService) { }
 
@@ -32,18 +33,27 @@ export class NoticiasPage implements OnInit {
       }
     )
   }
-
-  cargarNoticiasPorCategoria() {
-
+  cargarNoticiasPorCategoria(id) {
+    this.restprovider.getNoticiasPorCategoria(id).subscribe(
+      res => {
+        this.noticias = res['Noticias'] as any[];
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   async presentPopover(ev: any) {
-    const popover = await this.popoverController.create({
+    this.popover = await this.popoverController.create({
       component: PopoverComponent,
       event: ev,
-      translucent: true
+      translucent: true,
+    }).then(a => {
+      a.present().then(() => {
+        this.cargarNoticiasPorCategoria(localStorage.getItem("categoria"));
+      });
     });
-    return await popover.present();
   }
 
   async presentToast(msg) {

@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Global } from './providers/global';
 import { HttpClientModule } from '@angular/common/http';
 import { PopoverComponent } from './components/popover/popover.component';
+import { Camera } from '@ionic-native/Camera/ngx';
 
 @NgModule({
   declarations: [AppComponent, PopoverComponent],
@@ -20,6 +21,7 @@ import { PopoverComponent } from './components/popover/popover.component';
     StatusBar,
     SplashScreen,
     Global,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

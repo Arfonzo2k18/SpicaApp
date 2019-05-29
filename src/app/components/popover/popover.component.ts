@@ -31,7 +31,7 @@ export class PopoverComponent implements OnInit {
   }
 
   seleccionarCategoria(categoria) {
-    localStorage.setItem('categoriaSeleccionada', categoria);
+    localStorage.setItem("categoria", categoria);
   }
 
 }

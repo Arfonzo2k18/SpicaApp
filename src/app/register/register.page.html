@@ -1,0 +1,37 @@
+<div class="cajon_formulario">
+  <form (ngSubmit)="onSubmit()">
+    <ion-row class="mb-3">
+      <ion-item>
+        <ion-input type="text" placeholder="Nick..." [(ngModel)]="formulario.nick" name="nick">
+        </ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row class="mb-3">
+      <ion-item>
+        <ion-input type="text" placeholder="Nombre..." [(ngModel)]="formulario.nombre" name="nombre">
+        </ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row class="mb-3">
+      <ion-item>
+        <ion-input type="email" placeholder="Email..." [(ngModel)]="formulario.email" name="email">
+        </ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="password" placeholder="Contraseña..." [(ngModel)]="formulario.password" name="password">
+        </ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-input placeholder="Upload Image" type="file" (change)="onImageSelected($event)" required></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-button type="submit" color="danger" expand="full" shape="round">Crear Cuenta</ion-button>
+    </ion-row>
+  </form>
+</div>
