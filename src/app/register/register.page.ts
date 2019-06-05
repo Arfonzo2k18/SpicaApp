@@ -12,7 +12,7 @@ export class RegisterPage implements OnInit {
   fichero: File = null;
   fileUrl: any = null;
   respData: any;
-  formulario = {}
+  formulario = {};
 
   constructor(private restprovider: RestproviderService, private toastController: ToastController) { }
 
@@ -31,7 +31,7 @@ export class RegisterPage implements OnInit {
       error => {
         this.presentToast(error['error']);
       }
-    )
+    );
   }
 
   async presentToast(msg) {

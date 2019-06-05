@@ -20,13 +20,13 @@ export class RestproviderService {
     return this.http.post(this.global.URL_API + '/login', cuerpo);
   }
 
-  register(credenciales, fichero) {
+  register(formulario, fichero) {
     const cuerpo = new FormData();
-    cuerpo.append('nick', credenciales.nick);
-    cuerpo.append('email', credenciales.email);
-    cuerpo.append('password', credenciales.password);
-    cuerpo.append('nombre', credenciales.nombre);
-    cuerpo.append('image', fichero.name, fichero);
+    cuerpo.append('nombre', formulario.nombre);
+    cuerpo.append('nick', formulario.nick);
+    cuerpo.append('email', formulario.email);
+    cuerpo.append('password', formulario.password);
+    cuerpo.append('image', fichero, fichero.name);
     return this.http.post(this.global.URL_API + '/registerAPP', cuerpo);
   }
 
