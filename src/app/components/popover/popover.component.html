@@ -1,7 +1,0 @@
-<h3 style="text-align: center;">Selecciona una categoría: </h3>
-<ion-chip *ngFor="let categoria of categorias; let i = index" (click)="seleccionarCategoria(categoria.id)">
-  <ion-avatar>
-    <img src="{{global.URL_IMG_CATEGORIAS}}{{categoria.id}}/{{categoria.image}}">
-  </ion-avatar>
-  <ion-label>{{categoria.nombre}}</ion-label>
-</ion-chip>

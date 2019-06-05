@@ -20,7 +20,15 @@ export class RestproviderService {
     return this.http.post(this.global.URL_API + '/login', cuerpo);
   }
 
-  register() { }
+  register(credenciales, fichero) {
+    const cuerpo = new FormData();
+    cuerpo.append('nick', credenciales.nick);
+    cuerpo.append('email', credenciales.email);
+    cuerpo.append('password', credenciales.password);
+    cuerpo.append('nombre', credenciales.nombre);
+    cuerpo.append('image', fichero.name, fichero);
+    return this.http.post(this.global.URL_API + '/registerAPP', cuerpo);
+  }
 
   getCategorias() {
     return this.http.get(this.global.URL_API + '/categories');
@@ -30,8 +38,8 @@ export class RestproviderService {
     return this.http.get(this.global.URL_API + '/news');
   }
 
-  getNoticiasPorCategoria() {
-
+  getNoticiasPorCategoria(id) {
+    return this.http.get(this.global.URL_API + '/newbycategoryid/' + id);
   }
 
   extraerToken() { }

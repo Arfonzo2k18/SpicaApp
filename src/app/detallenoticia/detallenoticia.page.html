@@ -1,0 +1,15 @@
+<ion-toolbar color="danger">
+  <ion-buttons slot="start">
+    <ion-button routerLink="/noticias">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <h3 class="ion-text-center">{{noticia.titular}}</h3>
+  <img src="{{global.URL_IMG_NOTICIAS}}{{noticia.id}}/{{noticia.image}}" height="270px" width="100%">
+  <p class="ion-text-center" style="font-family: 'Montserrat', sans-serif;">Autor: {{noticia.Usuario.nombre}}</p>
+  <ion-text text-wrap [innerHTML]="this._sanitizer.bypassSecurityTrustHtml(noticia.contenido)">
+  </ion-text>
+</ion-content>

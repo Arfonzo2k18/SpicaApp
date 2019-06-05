@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  formulario = {}
+  formulario = {};
 
   constructor(public restprovider: RestproviderService, public toastController: ToastController, public router: Router) { }
 
