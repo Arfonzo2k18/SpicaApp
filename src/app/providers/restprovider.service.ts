@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Global } from './global';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -42,11 +43,14 @@ export class RestproviderService {
     return this.http.get(this.global.URL_API + '/newbycategoryid/' + id);
   }
 
-  extraerToken() { }
-
-  isLogged() { }
-
-  onLoggout() { }
+  extraertoken() {
+    const decodedToken = jwt_decode(sessionStorage.getItem('token'));
+    if (decodedToken == null) {
+      return null;
+    } else {
+      return decodedToken;
+    }
+  }
 
   setToken(token) {
     sessionStorage.setItem('token', token);
@@ -58,6 +62,7 @@ export class RestproviderService {
 
   deleteToken() {
     sessionStorage.removeItem('token');
+    this.router.navigateByUrl('/');
   }
 
 }

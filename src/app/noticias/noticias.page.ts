@@ -11,6 +11,7 @@ import { Global } from '../providers/global';
 export class NoticiasPage implements OnInit {
 
   noticias: any[];
+  usuarioLogged: any;
 
   isLoading = false;
 
@@ -24,8 +25,18 @@ export class NoticiasPage implements OnInit {
   ngOnInit() {
     this.cargarNoticias();
     this.cargarCategorias();
+    this.cargarUsuario();
   }
 
+  cargarUsuario() {
+    this.usuarioLogged = this.restprovider.extraertoken();
+    console.log('cargando usuario');
+  }
+
+  onLogout() {
+    this.menu.close('first');
+    this.restprovider.deleteToken();
+  }
 
   openFirst() {
     this.menu.enable(true, 'first');
