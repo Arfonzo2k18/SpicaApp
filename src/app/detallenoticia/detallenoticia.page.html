@@ -9,47 +9,25 @@
 
 <ion-content #content>
   <h3 class="ion-text-center">{{ noticia.titular }}</h3>
-  <img
-    src="{{ global.URL_IMG_NOTICIAS }}{{ noticia.id }}/{{ noticia.image }}"
-    height="270px"
-    width="100%"
-  />
+  <img src="{{ global.URL_IMG_NOTICIAS }}{{ noticia.id }}/{{ noticia.image }}" height="270px" width="100%" />
   <p class="ion-text-center" style="font-family: 'Montserrat', sans-serif;">
     Autor: {{ noticia.Usuario.nombre }}
   </p>
-  <div
-    style="margin: 10;"
-    [innerHTML]="this._sanitizer.bypassSecurityTrustHtml(noticia.contenido)"
-  ></div>
+  <div style="margin: 10;" [innerHTML]="this._sanitizer.bypassSecurityTrustHtml(noticia.contenido)"></div>
 
   <ion-card *ngFor="let comentario of comentarios; let i = index">
     <ion-item>
       <ion-avatar slot="start">
-        <img
-          src="{{ global.URL_IMG_USUARIOS }}{{ comentario.Usuario.id }}/{{
+        <img src="{{ global.URL_IMG_USUARIOS }}{{ comentario.Usuario.id }}/{{
             comentario.Usuario.image
-          }}"
-        />
+          }}" />
       </ion-avatar>
       <ion-col>
         <h2>{{ comentario.Usuario.nick }}</h2>
       </ion-col>
-      <ion-col
-        *ngIf="comentario.autor_id === usuarioLogged.id"
-        style="margin-left: 45%"
-      >
-        <ion-icon
-          name="create"
-          class="ion-text-end"
-          size="large"
-          (click)="abrirEdicion(comentario)"
-        ></ion-icon>
-        <ion-icon
-          name="trash"
-          class="ion-text-end"
-          size="large"
-          (click)="abrirConfirmacion(comentario)"
-        ></ion-icon>
+      <ion-col *ngIf="comentario.autor_id === usuarioLogged.id" style="margin-left: 30%">
+        <ion-icon name="create" class="ion-text-end" size="large" (click)="abrirEdicion(comentario)"></ion-icon>
+        <ion-icon name="trash" class="ion-text-end" size="large" (click)="abrirConfirmacion(comentario)"></ion-icon>
       </ion-col>
     </ion-item>
     <ion-card-content>
@@ -62,21 +40,11 @@
     </ion-row>
   </ion-card>
 
-  <ion-button
-    expand="block"
-    fill="outline"
-    color="danger"
-    (click)="presentAlertPrompt()"
-  >
+  <ion-button expand="block" fill="outline" color="danger" (click)="presentAlertPrompt()">
     Crear Comentario
   </ion-button>
 
-  <ion-fab
-    vertical="bottom"
-    horizontal="end"
-    slot="fixed"
-    (click)="goToComments()"
-  >
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="goToComments()">
     <ion-fab-button color="danger">
       <ion-icon name="chatboxes"></ion-icon>
     </ion-fab-button>

@@ -11,10 +11,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { Global } from "./providers/global";
 import { HttpClientModule } from "@angular/common/http";
 
-import { TimeAgoPipe } from "time-ago-pipe";
-
 @NgModule({
-  declarations: [AppComponent, TimeAgoPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -30,4 +28,4 @@ import { TimeAgoPipe } from "time-ago-pipe";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
