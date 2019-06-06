@@ -1,31 +1,45 @@
-<ion-toolbar>
-  <ion-title style="text-align: center; margin: auto;">Noticias</ion-title>
-  <ion-button color="danger" slot="end" (click)="openFirst()" style="margin-right: 3%; margin-bottom: 2px solid grey;">
-    Categorias
-  </ion-button>
+<ion-toolbar color="danger">
+  <ion-title>Noticias</ion-title>
+  <ion-buttons slot="start">
+    <ion-button
+      color="light"
+      slot="end"
+      (click)="openFirst()"
+      style="margin-right: 3%; margin-bottom: 2px solid grey;"
+    >
+      <ion-icon name="menu"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>
 <ion-content id="first">
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Desliza para refrescar" refreshingSpinner="circles"
-      refreshingText="Cargando todas las noticias...">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Desliza para refrescar"
+      refreshingSpinner="circles"
+      refreshingText="Cargando todas las noticias..."
+    >
     </ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let noticia of noticias; let i = index" routerLink="/detallenoticia/{{noticia.id}}"
-    (click)="seleccionarNoticia(noticia)">
-    <img src="{{global.URL_IMG_NOTICIAS}}{{noticia.id}}/{{noticia.image}}" height="270px">
+  <ion-card
+    *ngFor="let noticia of noticias; let i = index"
+    routerLink="/detallenoticia/{{ noticia.id }}"
+    (click)="seleccionarNoticia(noticia)"
+  >
+    <img
+      src="{{ global.URL_IMG_NOTICIAS }}{{ noticia.id }}/{{ noticia.image }}"
+      height="270px"
+    />
     <ion-card-header>
-      <ion-card-subtitle>Autor: {{noticia.Usuario.nombre}}</ion-card-subtitle>
-      <ion-card-title>{{noticia.titular}}</ion-card-title>
+      <ion-card-subtitle>Autor: {{ noticia.Usuario.nombre }}</ion-card-subtitle>
+      <ion-card-title>{{ noticia.titular }}</ion-card-title>
     </ion-card-header>
   </ion-card>
-
 </ion-content>
 
 <ion-content id="first" *ngIf="noticias === null">
   <p class="ion-text-center">No hay noticias actualmente.</p>
 </ion-content>
-
 
 <ion-menu side="start" menuId="first" contentId="first">
   <ion-header>
@@ -34,7 +48,6 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-
     <ion-item-divider>
       <ion-label>
         Cuenta
@@ -42,13 +55,16 @@
     </ion-item-divider>
 
     <ion-list>
-
       <ion-item>
         <ion-avatar slot="start">
-          <img src="{{global.URL_IMG_USUARIOS}}{{usuarioLogged.id}}/{{usuarioLogged.image}}">
+          <img
+            src="{{ global.URL_IMG_USUARIOS }}{{ usuarioLogged.id }}/{{
+              usuarioLogged.image
+            }}"
+          />
         </ion-avatar>
         <ion-label>
-          {{usuarioLogged.nick}}
+          {{ usuarioLogged.nick }}
         </ion-label>
       </ion-item>
 
@@ -60,7 +76,6 @@
           Cerrar Sesión
         </ion-label>
       </ion-item>
-
     </ion-list>
 
     <ion-item-divider>
@@ -72,11 +87,14 @@
     <ion-list *ngFor="let categoria of categorias; let i = index">
       <ion-item (click)="cargarNoticiasPorCategoria(categoria.id)">
         <ion-avatar slot="start">
-          <img src="{{global.URL_IMG_CATEGORIAS}}{{categoria.id}}/{{categoria.image}}">
+          <img
+            src="{{ global.URL_IMG_CATEGORIAS }}{{ categoria.id }}/{{
+              categoria.image
+            }}"
+          />
         </ion-avatar>
-        <ion-label>{{categoria.nombre}}</ion-label>
+        <ion-label>{{ categoria.nombre }}</ion-label>
       </ion-item>
     </ion-list>
-
   </ion-content>
 </ion-menu>

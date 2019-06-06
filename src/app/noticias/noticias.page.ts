@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastController, MenuController, LoadingController } from '@ionic/angular';
-import { RestproviderService } from '../providers/restprovider.service';
-import { Global } from '../providers/global';
+import { Component, OnInit } from "@angular/core";
+import {
+  ToastController,
+  MenuController,
+  LoadingController
+} from "@ionic/angular";
+import { RestproviderService } from "../providers/restprovider.service";
+import { Global } from "../providers/global";
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.page.html',
-  styleUrls: ['./noticias.page.scss'],
+  selector: "app-noticias",
+  templateUrl: "./noticias.page.html",
+  styleUrls: ["./noticias.page.scss"]
 })
 export class NoticiasPage implements OnInit {
-
   noticias: any[];
   usuarioLogged: any;
 
@@ -20,7 +23,13 @@ export class NoticiasPage implements OnInit {
   selected = [];
 
   // tslint:disable-next-line:max-line-length
-  constructor(public global: Global, public toastController: ToastController, public restprovider: RestproviderService, public loadingController: LoadingController, private menu: MenuController) { }
+  constructor(
+    public global: Global,
+    public toastController: ToastController,
+    public restprovider: RestproviderService,
+    public loadingController: LoadingController,
+    private menu: MenuController
+  ) {}
 
   ngOnInit() {
     this.cargarNoticias();
@@ -30,17 +39,16 @@ export class NoticiasPage implements OnInit {
 
   cargarUsuario() {
     this.usuarioLogged = this.restprovider.extraertoken();
-    console.log('cargando usuario');
   }
 
   onLogout() {
-    this.menu.close('first');
+    this.menu.close("first");
     this.restprovider.deleteToken();
   }
 
   openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
+    this.menu.enable(true, "first");
+    this.menu.open("first");
   }
 
   doRefresh(event) {
@@ -110,25 +118,28 @@ export class NoticiasPage implements OnInit {
 
   async present() {
     this.isLoading = true;
-    return await this.loadingController.create({
-      duration: 5000,
-    }).then(a => {
-      a.present().then(() => {
-        console.log('presented');
-        if (!this.isLoading) {
-          a.dismiss().then(() => console.log('abort presenting'));
-        }
+    return await this.loadingController
+      .create({
+        duration: 5000
+      })
+      .then(a => {
+        a.present().then(() => {
+          console.log("presented");
+          if (!this.isLoading) {
+            a.dismiss().then(() => console.log("abort presenting"));
+          }
+        });
       });
-    });
   }
 
   async dismiss() {
     this.isLoading = false;
-    return await this.loadingController.dismiss().then(() => console.log('dismissed'));
+    return await this.loadingController
+      .dismiss()
+      .then(() => console.log("dismissed"));
   }
 
   seleccionarNoticia(noticiaseleccionada) {
-    localStorage.setItem('noticia', JSON.stringify(noticiaseleccionada));
+    localStorage.setItem("noticia", JSON.stringify(noticiaseleccionada));
   }
-
 }
